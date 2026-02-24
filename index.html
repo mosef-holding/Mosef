@@ -22,8 +22,10 @@
       --paper: #f7f3ec;
       --paper2:#efe7da;
 
-      --ink: #123022; /* green family, not black */
+      /* Ink (no black) */
+      --ink: #123022;
       --muted: rgba(18,48,34,0.72);
+
       --hair: rgba(26,58,42,0.14);
       --hair2: rgba(184,151,90,0.22);
 
@@ -41,7 +43,7 @@
       overflow-x:hidden;
     }
 
-    /* ---------- Top Nav ---------- */
+    /* ---------- NAV ---------- */
     nav{
       position:fixed;
       inset:0 0 auto 0;
@@ -54,6 +56,7 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--hair);
     }
+
     .brand{
       display:flex;
       align-items:center;
@@ -61,20 +64,44 @@
       text-decoration:none;
       color:inherit;
     }
-    .brand .wordmark{
+
+    /* monogram mark */
+    .brand-mark{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(184,151,90,0.55);
+      background: rgba(184,151,90,0.06);
+      box-shadow: 0 0 0 6px rgba(212,176,122,0.04);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .brand-mark span{
+      font-family:"Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 50%, var(--gold) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .brand-text{
       display:flex;
       flex-direction:column;
       gap:2px;
     }
-    .brand .wordmark .top{
+    .brand-text .top{
       font-family:"Cormorant Garamond", serif;
       letter-spacing: 0.22em;
       font-weight:600;
       font-size: 1.05rem;
       text-transform:uppercase;
       color: var(--green);
+      line-height: 1.1;
     }
-    .brand .wordmark .sub{
+    .brand-text .sub{
       font-size:0.65rem;
       letter-spacing:0.32em;
       text-transform:uppercase;
@@ -92,35 +119,16 @@
       text-decoration:none;
       color: var(--muted);
       font-size: 0.72rem;
-      letter-spacing: 0.20em;
+      letter-spacing:0.20em;
       text-transform:uppercase;
       transition: color .25s ease;
     }
     .navlinks a:hover{ color: var(--green); }
-    .navcta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 14px;
-      border: 1px solid var(--hair2);
-      border-radius: 999px;
-      color: var(--green);
-      text-decoration:none;
-      font-size:0.72rem;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      background: rgba(212,176,122,0.10);
-    }
 
-    /* ---------- Hero ---------- */
+    /* ---------- HERO ---------- */
     .hero{
-      min-height: 100vh;
-      padding: 120px 28px 72px;
+      min-height: 92vh;
+      padding: 120px 28px 64px;
       background: var(--green);
       position:relative;
       overflow:hidden;
@@ -129,30 +137,17 @@
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 24%, rgba(212,176,122,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 50% at 18% 74%, rgba(212,176,122,0.10) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(247,243,236,0.06) 0%, transparent 40%, rgba(247,243,236,0.05) 100%);
+        radial-gradient(ellipse 80% 60% at 70% 24%, rgba(212,176,122,0.16) 0%, transparent 62%),
+        radial-gradient(ellipse 55% 50% at 18% 74%, rgba(212,176,122,0.10) 0%, transparent 62%),
+        linear-gradient(180deg, rgba(247,243,236,0.06) 0%, transparent 45%, rgba(247,243,236,0.05) 100%);
       pointer-events:none;
     }
-    .hero::after{
-      content:"";
-      position:absolute; inset:-20%;
-      background-image:
-        linear-gradient(to right, rgba(184,151,90,0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(184,151,90,0.08) 1px, transparent 1px);
-      background-size: 88px 88px;
-      transform: rotate(-6deg);
-      opacity: 0.7;
-      pointer-events:none;
-      mask-image: radial-gradient(circle at 50% 45%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 62%);
-    }
-
     .hero-inner{
       position:relative;
       max-width: 1120px;
       margin:0 auto;
       display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 56px;
       align-items:end;
     }
@@ -170,51 +165,39 @@
       white-space:nowrap;
     }
 
-    /* ---- NEW: Hero Monogram (subtle, same gold family) ---- */
+    /* HERO monogram (replaces the old line) */
     .hero-monogram{
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       display:flex;
       align-items:center;
-      gap:14px;
     }
-    .m-box{
+    .hero-monogram .m-box{
       width: 64px;
       height: 64px;
-      background: rgba(26,58,42,0.0);
+      border-radius: 16px;
       border: 1px solid rgba(184,151,90,0.55);
-      border-radius: 14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow: 0 0 0 6px rgba(212,176,122,0.04);
+      background: rgba(247,243,236,0.06);
+      box-shadow: 0 0 0 8px rgba(212,176,122,0.04);
+      display:grid;
+      place-items:center;
     }
-    .m-box span{
-      font-family: "Cormorant Garamond", serif;
-      font-size: 32px;
+    .hero-monogram .m-box span{
+      font-family:"Cormorant Garamond", serif;
+      font-size: 1.65rem;
       font-weight: 700;
       letter-spacing: 0.10em;
-
-      /* gold gradient to match other site accents */
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 50%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
+    /* Eyebrow without line */
     .kicker{
-      display:flex;
-      align-items:center;
-      gap:14px;
       font-size:0.72rem;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      color: rgba(212,176,122,0.95);
+      color: rgba(212,176,122,0.92);
       margin-bottom: 18px;
-    }
-    .kicker::before{
-      content:"";
-      width: 42px; height:1px;
-      background: rgba(212,176,122,0.9);
-      display:block;
     }
 
     .h1{
@@ -232,18 +215,18 @@
     }
 
     .lead{
-      max-width: 56ch;
+      max-width: 60ch;
       color: rgba(247,243,236,0.68);
       font-size: 0.95rem;
       line-height: 1.9;
     }
 
     .hero-side{
-      border-left: 1px solid rgba(212,176,122,0.25);
+      border-left: 1px solid rgba(212,176,122,0.22);
       padding-left: 28px;
       display:flex;
       flex-direction:column;
-      gap: 18px;
+      gap: 16px;
       align-self:stretch;
       justify-content:flex-end;
     }
@@ -252,8 +235,8 @@
       display:flex;
       flex-direction:column;
       gap: 4px;
-      padding: 16px 16px;
-      border: 1px solid rgba(212,176,122,0.22);
+      padding: 16px;
+      border: 1px solid rgba(212,176,122,0.20);
       border-radius: var(--radius);
       background: rgba(247,243,236,0.06);
     }
@@ -266,162 +249,49 @@
     .badge .v{
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
-      font-size:1.25rem;
+      font-size:1.15rem;
       color: rgba(247,243,236,0.92);
     }
 
-    /* ---------- Sections ---------- */
-    section{
-      padding: 88px 28px;
-    }
-    .wrap{
+    /* ---------- MAIN ---------- */
+    main{
       max-width: 1120px;
       margin:0 auto;
+      padding: 64px 28px 72px;
     }
-    .label{
-      font-size:0.66rem;
-      letter-spacing:0.32em;
-      text-transform:uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-    .title{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-size: clamp(1.9rem, 3.6vw, 3.0rem);
-      line-height:1.15;
-      color: var(--green);
+
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
       margin-bottom: 22px;
     }
-    .rule{
-      width: 46px;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 26px;
-    }
-
-    /* About */
-    .about{
-      background: linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
-    }
-    .about-grid{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 44px;
-      align-items:start;
-    }
-    .p{
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.9;
-      margin-bottom: 14px;
-    }
-    .p:last-child{ margin-bottom:0; }
-
-    .facts{
-      padding: 22px;
-      border: 1px solid var(--hair2);
-      border-radius: var(--radius);
-      background: rgba(184,151,90,0.06);
-      box-shadow: var(--shadow);
-    }
-    .fact{
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(26,58,42,0.12);
-    }
-    .fact:last-child{ border-bottom:none; }
-    .fact .k{
-      font-size:0.62rem;
-      letter-spacing:0.26em;
-      text-transform:uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    .fact .v{
+    .section-title{
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
-      font-size: 1.15rem;
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
       color: var(--green);
+      line-height:1.15;
+    }
+    .section-note{
+      color: var(--muted);
+      max-width: 70ch;
+      font-size:0.92rem;
+      line-height:1.8;
     }
 
-    /* Operating Model */
-    .model{
-      background: var(--green);
-      position:relative;
-      overflow:hidden;
-    }
-    .model::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(to right, rgba(212,176,122,0.10) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(212,176,122,0.10) 1px, transparent 1px);
-      background-size: 120px 120px;
-      opacity: 0.35;
-      pointer-events:none;
-    }
-    .model .title{ color: rgba(247,243,236,0.98); }
-    .model .label{ color: rgba(212,176,122,0.92); }
-    .model .rule{ background: rgba(212,176,122,0.9); }
-
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-      margin-top: 32px;
-      border: 1px solid rgba(247,243,236,0.12);
-      border-radius: 14px;
-      overflow:hidden;
-      background: rgba(247,243,236,0.04);
-    }
-    .step{
-      padding: 28px 22px;
-      border-right: 1px solid rgba(247,243,236,0.12);
-      min-height: 210px;
-    }
-    .step:last-child{ border-right:none; }
-    .step .n{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-size: 2.3rem;
-      color: rgba(212,176,122,0.28);
-      margin-bottom: 10px;
-      line-height:1;
-    }
-    .step .h{
-      font-size:0.72rem;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
-      color: rgba(212,176,122,0.95);
-      margin-bottom: 10px;
-    }
-    .step .d{
-      color: rgba(247,243,236,0.64);
-      font-size:0.86rem;
-      line-height: 1.75;
-    }
-
-    /* Companies */
-    .companies{
-      background: var(--paper);
-    }
-    .companies-top{
-      display:grid;
-      grid-template-columns: 1fr 1.35fr;
-      gap: 34px;
-      align-items:start;
-      margin-bottom: 30px;
-    }
-
-    .grid{
+    /* Companies cards: web square, mobile vertical */
+    .cards{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
+      margin-top: 20px;
     }
     .card{
       border: 1px solid var(--hair2);
       border-radius: 16px;
-      background: rgba(247,243,236,0.78);
+      background: rgba(247,243,236,0.85);
       box-shadow: 0 14px 34px rgba(18,48,34,0.10);
       padding: 22px 18px;
       display:flex;
@@ -442,9 +312,9 @@
       inset: -1px -1px auto -1px;
       height: 2px;
       background: linear-gradient(90deg, rgba(184,151,90,0.0), rgba(184,151,90,1), rgba(184,151,90,0.0));
-      opacity: 0.9;
+      opacity: 0.85;
     }
-    .card .icon{
+    .icon{
       width: 36px; height:36px;
       border-radius: 10px;
       border: 1px solid rgba(184,151,90,0.35);
@@ -456,26 +326,26 @@
       background: rgba(184,151,90,0.06);
       margin-bottom: 6px;
     }
-    .card .name{
+    .name{
       font-family:"Cormorant Garamond", serif;
       font-weight:400;
       font-size: 1.25rem;
       color: var(--green);
       line-height:1.15;
     }
-    .card .meta{
+    .meta{
       font-size:0.62rem;
       letter-spacing:0.22em;
       text-transform:uppercase;
       color: var(--gold);
     }
-    .card .desc{
+    .desc{
       margin-top:auto;
       color: var(--muted);
       font-size:0.84rem;
       line-height:1.75;
     }
-    .card .hint{
+    .hint{
       margin-top: 10px;
       font-size:0.62rem;
       letter-spacing:0.20em;
@@ -483,126 +353,39 @@
       color: rgba(18,48,34,0.55);
     }
 
-    /* Sustainability */
-    .sustain{
-      background: linear-gradient(180deg, var(--paper2) 0%, rgba(247,243,236,1) 100%);
-      position:relative;
-      overflow:hidden;
-    }
-    .sustain::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(ellipse 70% 55% at 20% 20%, rgba(184,151,90,0.18) 0%, transparent 62%),
-        radial-gradient(ellipse 55% 55% at 80% 70%, rgba(26,58,42,0.08) 0%, transparent 60%);
-      pointer-events:none;
-    }
-    .sustain-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      align-items:start;
-    }
-    .principles{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .pillbox{
-      border: 1px solid var(--hair2);
-      border-radius: 14px;
-      padding: 16px;
-      background: rgba(247,243,236,0.75);
-    }
-    .pillbox .ph{
-      font-size:0.70rem;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
-      color: var(--green);
-      margin-bottom: 6px;
-    }
-    .pillbox .pd{
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.75;
-    }
-
-    /* Contact */
+    /* Minimal contact strip */
     .contact{
-      background: var(--green);
-      color: rgba(247,243,236,0.92);
-      position:relative;
-      overflow:hidden;
-    }
-    .contact::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(ellipse 70% 60% at 15% 30%, rgba(212,176,122,0.12) 0%, transparent 64%),
-        linear-gradient(180deg, rgba(247,243,236,0.05) 0%, transparent 45%, rgba(247,243,236,0.05) 100%);
-      pointer-events:none;
-    }
-    .contact .title{ color: rgba(247,243,236,0.98); }
-    .contact .label{ color: rgba(212,176,122,0.92); }
-    .contact .rule{ background: rgba(212,176,122,0.9); }
-
-    .contact-grid{
+      margin-top: 56px;
+      border-radius: 18px;
+      border: 1px solid var(--hair2);
+      background: rgba(184,151,90,0.06);
+      padding: 22px 18px;
       display:grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 34px;
+      gap: 16px;
       align-items:start;
-      position:relative;
     }
-    .note{
-      color: rgba(247,243,236,0.62);
-      font-size:0.92rem;
-      line-height:1.9;
-      margin-bottom: 18px;
-    }
-    .contactbox{
-      border: 1px solid rgba(212,176,122,0.22);
-      border-radius: var(--radius);
-      padding: 18px;
-      background: rgba(247,243,236,0.06);
-    }
-    .ci{
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(247,243,236,0.10);
-    }
-    .ci:last-child{ border-bottom:none; }
-    .ci .k{
-      font-size:0.62rem;
-      letter-spacing:0.26em;
+    .contact .ct{
+      font-size:0.66rem;
+      letter-spacing:0.32em;
       text-transform:uppercase;
-      color: rgba(212,176,122,0.92);
-      margin-bottom: 6px;
+      color: var(--gold);
+      margin-bottom: 10px;
     }
-    .ci .v{
+    .contact .cv{
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
-      font-size: 1.1rem;
-      color: rgba(247,243,236,0.95);
+      color: var(--green);
+      font-size: 1.15rem;
       overflow-wrap:anywhere;
     }
-
-    .tagline{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-style:italic;
-      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
-      color: rgba(247,243,236,0.26);
-      line-height:1.25;
-      margin-top: 8px;
-    }
-    .small{
-      margin-top: 18px;
-      font-size:0.66rem;
-      letter-spacing:0.30em;
-      text-transform:uppercase;
-      color: rgba(212,176,122,0.50);
+    .contact .cdesc{
+      color: var(--muted);
+      font-size:0.92rem;
+      line-height:1.8;
     }
 
-    /* Footer */
+    /* ---------- FOOTER ---------- */
     footer{
       background: #153226;
       color: rgba(247,243,236,0.35);
@@ -625,28 +408,29 @@
       color: rgba(212,176,122,0.42);
     }
 
-    /* Reveal animation */
-    .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible{ opacity:1; transform: translateY(0); }
-
-    /* Responsive */
+    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1024px){
       .navlinks{ display:none; }
       .hero-inner{ grid-template-columns: 1fr; gap: 26px; }
-      .hero-side{ border-left:none; padding-left:0; border-top: 1px solid rgba(212,176,122,0.25); padding-top: 18px; }
+      .hero-side{
+        border-left:none;
+        padding-left:0;
+        border-top: 1px solid rgba(212,176,122,0.22);
+        padding-top: 18px;
+      }
       .since{ display:none; }
 
-      .about-grid{ grid-template-columns: 1fr; }
-      .companies-top{ grid-template-columns: 1fr; }
-      .steps{ grid-template-columns: 1fr 1fr; }
-      .step{ border-right:none; border-bottom: 1px solid rgba(247,243,236,0.12); }
-      .step:last-child{ border-bottom:none; }
-
-      .grid{ grid-template-columns: 1fr; } /* mobile vertical */
+      .cards{ grid-template-columns: 1fr; }
       .card{ aspect-ratio: auto; }
-      .sustain-grid{ grid-template-columns: 1fr; }
-      .principles{ grid-template-columns: 1fr; }
-      .contact-grid{ grid-template-columns: 1fr; }
+
+      .contact{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px){
+      nav{ padding: 16px 18px; }
+      .brand-mark{ width: 40px; height: 40px; border-radius: 12px; }
+      .brand-text .top{ font-size: 1.0rem; }
+      .brand-text .sub{ letter-spacing: 0.22em; }
     }
   </style>
 </head>
@@ -655,31 +439,18 @@
 
   <!-- NAV -->
   <nav>
-    <a class="brand" href="#top" aria-label="MOSEF">
-      <!-- Minimal monogram in nav -->
-      <svg width="42" height="42" viewBox="0 0 64 64" role="img" aria-label="MOSEF Monogram">
-        <rect x="1.5" y="1.5" width="61" height="61" rx="12" fill="rgba(184,151,90,0.08)" stroke="rgba(184,151,90,0.45)" stroke-width="3"/>
-        <path d="M18 46V18h6l8 16 8-16h6v28h-6V30l-8 16-8-16v16h-6z"
-              fill="rgba(26,58,42,1)"/>
-      </svg>
-
-      <div class="wordmark">
-        <div class="top">MOSEF HOLDINGS</div>
-        <div class="sub">Organic Sustainable Ecological Farms · Since 1953</div>
+    <a class="brand" href="#top" aria-label="MOSEF Holdings">
+      <div class="brand-mark" aria-hidden="true"><span>M</span></div>
+      <div class="brand-text">
+        <div class="top">MOSEF</div>
+        <div class="sub">Holdings Ltd · Organic Sustainable Ecological Farms</div>
       </div>
     </a>
 
     <ul class="navlinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#model">Model</a></li>
       <li><a href="#companies">Companies</a></li>
-      <li><a href="#sustainability">Sustainability</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact">Enquiries</a></li>
     </ul>
-
-    <div class="navcta">
-      <a class="pill" href="#contact">Enquiries</a>
-    </div>
   </nav>
 
   <!-- HERO -->
@@ -688,7 +459,6 @@
 
     <div class="hero-inner">
       <div>
-        <!-- NEW: Hero Monogram (subtle) -->
         <div class="hero-monogram" aria-label="MOSEF Monogram">
           <div class="m-box"><span>M</span></div>
         </div>
@@ -696,265 +466,96 @@
         <div class="kicker">Organic Sustainable Ecological Farms</div>
 
         <h1 class="h1">
-          Built on <em>discipline</em>.<br/>
-          Structured for endurance.
+          Built on <em>discipline</em>.<br>
+          Output built to last.
         </h1>
 
         <p class="lead">
           MOSEF Holdings is a UK agricultural holding group operating through specialist companies across poultry, sheep genetics, high-value crops, and rural property.
-          Operational focus, controlled standards, and long-term asset stewardship.
+          Measured execution, documented standards, and long-term stewardship.
         </p>
       </div>
 
       <aside class="hero-side" aria-label="Highlights">
         <div class="badge">
-          <div class="t">Group Structure</div>
+          <div class="t">Structure</div>
           <div class="v">Holding + operating companies</div>
         </div>
         <div class="badge">
-          <div class="t">Compliance Posture</div>
-          <div class="v">Certification pathways planned & governed</div>
+          <div class="t">Approach</div>
+          <div class="v">Professional counterparties</div>
         </div>
         <div class="badge">
-          <div class="t">Principle</div>
+          <div class="t">Standard</div>
           <div class="v">Traceability · Consistency · Control</div>
         </div>
       </aside>
     </div>
   </header>
 
-  <!-- ABOUT -->
-  <section class="about reveal" id="about">
-    <div class="wrap">
-      <div class="label">About MOSEF</div>
-      <div class="title">A holding structure built for the long term</div>
-      <div class="rule"></div>
-
-      <div class="about-grid">
-        <div>
-          <p class="p">
-            MOSEF Holdings Ltd sits at the head of a group of specialist operating companies, each focused on a distinct agricultural discipline.
-            The group runs on one principle: productive assets, properly managed, create dependable output without compromising integrity.
-          </p>
-          <p class="p">
-            Subsidiaries are operationally distinct and held to a consistent governance standard.
-            The holding provides oversight, capital allocation, brand governance, and group-level compliance cadence.
-          </p>
-          <p class="p">
-            We do not diversify for its own sake. Each business earns its place through operational merit and strategic fit.
-          </p>
-        </div>
-
-        <div class="facts">
-          <div class="fact">
-            <div class="k">Operating Companies</div>
-            <div class="v">Poultry · Forest & Gold · Genetics · Property</div>
-          </div>
-          <div class="fact">
-            <div class="k">Market Approach</div>
-            <div class="v">B2B food service & professional counterparties</div>
-          </div>
-          <div class="fact">
-            <div class="k">Group Standard</div>
-            <div class="v">Documentation-first, auditable operations</div>
-          </div>
-        </div>
+  <!-- MINIMAL CONTENT -->
+  <main>
+    <div class="section-head" id="companies">
+      <div class="section-title">Group companies</div>
+      <div class="section-note">
+        Subsidiary websites will be published as each operating brand is ready. This holding page remains intentionally minimal.
       </div>
     </div>
-  </section>
 
-  <!-- MODEL -->
-  <section class="model reveal" id="model">
-    <div class="wrap">
-      <div class="label">Operating Model</div>
-      <div class="title">How the group works</div>
-      <div class="rule"></div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">◈</div>
+        <div class="name">MOSEF Poultry</div>
+        <div class="meta">Premium poultry · controlled protocols</div>
+        <div class="desc">Structured production built around consistency, documentation, and measured logistics.</div>
+        <div class="hint">Site: coming soon</div>
+      </div>
 
-      <div class="steps" role="list">
-        <div class="step" role="listitem">
-          <div class="n">01</div>
-          <div class="h">Holding Oversight</div>
-          <div class="d">Capital allocation, governance, and group standards sit at holding level. Execution sits with each operating company.</div>
-        </div>
-        <div class="step" role="listitem">
-          <div class="n">02</div>
-          <div class="h">Asset Foundation</div>
-          <div class="d">Property and fixed assets are structured to preserve asset integrity and isolate operational risk.</div>
-        </div>
-        <div class="step" role="listitem">
-          <div class="n">03</div>
-          <div class="h">Traceable Output</div>
-          <div class="d">Batch discipline, documentation cadence, and controlled handling are designed into the system from the start.</div>
-        </div>
-        <div class="step" role="listitem">
-          <div class="n">04</div>
-          <div class="h">Logistics Discipline</div>
-          <div class="d">Planned dispatch cycles and cold-chain integrity (where relevant) are treated as operational requirements, not marketing.</div>
-        </div>
-        <div class="step" role="listitem">
-          <div class="n">05</div>
-          <div class="h">Scalable by Design</div>
-          <div class="d">Processes are standardised and documented to support replication once metrics prove stability and resilience.</div>
-        </div>
+      <div class="card">
+        <div class="icon">◇</div>
+        <div class="name">MOSEF Forest & Gold</div>
+        <div class="meta">Oyster mushroom · saffron</div>
+        <div class="desc">Controlled-environment production with traceable batches and disciplined outputs.</div>
+        <div class="hint">Site: coming soon</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">△</div>
+        <div class="name">MOSEF Genetics</div>
+        <div class="meta">Texel pedigree · hybrid meat line</div>
+        <div class="desc">Closed-flock genetics programme with recorded lineage and performance discipline.</div>
+        <div class="hint">Site: coming soon</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">□</div>
+        <div class="name">MOSEF Property</div>
+        <div class="meta">UK agricultural real estate</div>
+        <div class="desc">Land and fixed-asset holding vehicle focused on stewardship and footprint strategy.</div>
+        <div class="hint">Site: coming soon</div>
       </div>
     </div>
-  </section>
 
-  <!-- COMPANIES -->
-  <section class="companies reveal" id="companies">
-    <div class="wrap">
-      <div class="companies-top">
-        <div>
-          <div class="label">Our Companies</div>
-          <div class="title">Four operating businesses. One set of standards.</div>
-          <div class="rule"></div>
+    <div class="contact" id="contact">
+      <div>
+        <div class="ct">Enquiries</div>
+        <div class="cdesc">
+          MOSEF Holdings focuses on professional counterparties. For supply, commercial discussions, or group information, please contact:
         </div>
-        <p class="p">
-          Each subsidiary operates as a distinct commercial entity with its own management and market focus.
-          What they share is a common commitment to traceability, disciplined execution, and controlled brand governance.
-          (Dedicated subsidiary sites can be linked as they go live.)
-        </p>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="icon">◈</div>
-          <div class="name">MOSEF Poultry</div>
-          <div class="meta">Premium poultry · controlled protocols</div>
-          <div class="desc">
-            Structured production and processing pathways designed for auditable standards and consistent supply.
-          </div>
-          <div class="hint">Subsidiary site: planned</div>
-        </div>
-
-        <div class="card">
-          <div class="icon">◇</div>
-          <div class="name">MOSEF Forest & Gold</div>
-          <div class="meta">Oyster mushroom · saffron</div>
-          <div class="desc">
-            Controlled-environment production focused on consistency, yield discipline, and traceable batches.
-          </div>
-          <div class="hint">Subsidiary site: planned</div>
-        </div>
-
-        <div class="card">
-          <div class="icon">△</div>
-          <div class="name">MOSEF Genetics</div>
-          <div class="meta">Texel pedigree · hybrid meat line</div>
-          <div class="desc">
-            A closed-flock genetics programme with documented lineage, health records, and performance discipline.
-          </div>
-          <div class="hint">Subsidiary site: planned</div>
-        </div>
-
-        <div class="card">
-          <div class="icon">□</div>
-          <div class="name">MOSEF Property</div>
-          <div class="meta">UK agricultural real estate</div>
-          <div class="desc">
-            The group’s asset holding vehicle for land acquisition, stewardship, and long-term footprint strategy.
-          </div>
-          <div class="hint">Subsidiary site: planned</div>
-        </div>
+      <div>
+        <div class="ct">Email</div>
+        <div class="cv">enquiries@mosef.co.uk</div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- SUSTAINABILITY -->
-  <section class="sustain reveal" id="sustainability">
-    <div class="wrap">
-      <div class="label">Sustainability</div>
-      <div class="title">Responsible stewardship, not performance</div>
-      <div class="rule"></div>
-
-      <div class="sustain-grid">
-        <div>
-          <p class="p">
-            Sustainability is treated as an operational requirement — embedded in how we plan land use, stock movement, inputs, and energy.
-            The objective is efficiency with integrity, not theatre.
-          </p>
-          <p class="p">
-            Where certifications apply, pathways are planned and managed under a documented compliance cadence.
-          </p>
-        </div>
-
-        <div class="principles">
-          <div class="pillbox">
-            <div class="ph">Traceability</div>
-            <div class="pd">Structured record-keeping and lot discipline designed for professional counterparties.</div>
-          </div>
-          <div class="pillbox">
-            <div class="ph">Biosecurity</div>
-            <div class="pd">Protocols and access discipline treated as core operational controls.</div>
-          </div>
-          <div class="pillbox">
-            <div class="ph">Resource Discipline</div>
-            <div class="pd">Measured energy and input tracking to keep costs real and optimisation visible.</div>
-          </div>
-          <div class="pillbox">
-            <div class="ph">Governance</div>
-            <div class="pd">Holding-level standards applied consistently across operating companies.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact reveal" id="contact">
-    <div class="wrap">
-      <div class="label">Contact</div>
-      <div class="title">Enquiries</div>
-      <div class="rule"></div>
-
-      <div class="contact-grid">
-        <div>
-          <p class="note">
-            MOSEF Holdings focuses on professional counterparties. If you represent a business, institution, or trade partner and wish to discuss supply, governance standards, or group structure, we welcome correspondence.
-          </p>
-
-          <div class="contactbox">
-            <div class="ci">
-              <div class="k">General Enquiries</div>
-              <div class="v">enquiries@mosef.co.uk</div>
-            </div>
-            <div class="ci">
-              <div class="k">Supply & Commercial</div>
-              <div class="v">supply@mosef.co.uk</div>
-            </div>
-            <div class="ci">
-              <div class="k">Registered</div>
-              <div class="v">MOSEF Holdings Ltd · United Kingdom</div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="tagline">“Organic Sustainable<br/>Ecological Farms”</div>
-          <div class="small">MOSEF Holdings · Since 1953</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="footer-wrap">
       <div>© 2026 MOSEF Holdings Ltd. All rights reserved.</div>
-      <div class="footer-brand">MOSEF</div>
+      <div class="footer-brand">MOSEF · Since 1953</div>
     </div>
   </footer>
-
-  <script>
-    // Subtle reveal
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, {threshold: 0.12});
-    els.forEach(el=>io.observe(el));
-  </script>
 
 </body>
 </html>
