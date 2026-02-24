@@ -22,7 +22,7 @@
       --paper: #f7f3ec;
       --paper2:#efe7da;
 
-      --ink: #123022; /* still green family, not black */
+      --ink: #123022; /* green family, not black */
       --muted: rgba(18,48,34,0.72);
       --hair: rgba(26,58,42,0.14);
       --hair2: rgba(184,151,90,0.22);
@@ -117,7 +117,7 @@
       background: rgba(212,176,122,0.10);
     }
 
-    /* ---------- Hero (C: minimal / almost abstract) ---------- */
+    /* ---------- Hero ---------- */
     .hero{
       min-height: 100vh;
       padding: 120px 28px 72px;
@@ -125,8 +125,6 @@
       position:relative;
       overflow:hidden;
     }
-
-    /* Abstract layers (no images needed) */
     .hero::before{
       content:"";
       position:absolute; inset:0;
@@ -136,8 +134,6 @@
         linear-gradient(180deg, rgba(247,243,236,0.06) 0%, transparent 40%, rgba(247,243,236,0.05) 100%);
       pointer-events:none;
     }
-
-    /* Fine gold grid lines (quiet, structured) */
     .hero::after{
       content:"";
       position:absolute; inset:-20%;
@@ -159,6 +155,49 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 56px;
       align-items:end;
+    }
+
+    .since{
+      position:absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin:center;
+      font-size: 0.66rem;
+      letter-spacing: 0.36em;
+      text-transform:uppercase;
+      color: rgba(212,176,122,0.45);
+      white-space:nowrap;
+    }
+
+    /* ---- NEW: Hero Monogram (subtle, same gold family) ---- */
+    .hero-monogram{
+      margin-bottom: 28px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .m-box{
+      width: 64px;
+      height: 64px;
+      background: rgba(26,58,42,0.0);
+      border: 1px solid rgba(184,151,90,0.55);
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 0 0 6px rgba(212,176,122,0.04);
+    }
+    .m-box span{
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+
+      /* gold gradient to match other site accents */
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .kicker{
@@ -229,19 +268,6 @@
       font-weight:300;
       font-size:1.25rem;
       color: rgba(247,243,236,0.92);
-    }
-
-    .since{
-      position:absolute;
-      right: 28px;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      transform-origin:center;
-      font-size: 0.66rem;
-      letter-spacing: 0.36em;
-      text-transform:uppercase;
-      color: rgba(212,176,122,0.45);
-      white-space:nowrap;
     }
 
     /* ---------- Sections ---------- */
@@ -318,7 +344,7 @@
       color: var(--green);
     }
 
-    /* Operating Model (B: structured geometry feeling) */
+    /* Operating Model */
     .model{
       background: var(--green);
       position:relative;
@@ -375,7 +401,7 @@
       line-height: 1.75;
     }
 
-    /* Companies (cards) */
+    /* Companies */
     .companies{
       background: var(--paper);
     }
@@ -403,7 +429,12 @@
       gap: 10px;
       position:relative;
       overflow:hidden;
-      aspect-ratio: 1 / 1; /* webte kare */
+      transition: transform .25s ease, background .25s ease;
+      aspect-ratio: 1 / 1;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(239,231,218,0.95);
     }
     .card::before{
       content:"";
@@ -452,7 +483,7 @@
       color: rgba(18,48,34,0.55);
     }
 
-    /* Sustainability (A: softer, but controlled) */
+    /* Sustainability */
     .sustain{
       background: linear-gradient(180deg, var(--paper2) 0%, rgba(247,243,236,1) 100%);
       position:relative;
@@ -573,7 +604,7 @@
 
     /* Footer */
     footer{
-      background: #153226; /* still green family */
+      background: #153226;
       color: rgba(247,243,236,0.35);
       padding: 20px 28px;
       border-top: 1px solid rgba(212,176,122,0.18);
@@ -594,7 +625,7 @@
       color: rgba(212,176,122,0.42);
     }
 
-    /* Reveal animation (subtle) */
+    /* Reveal animation */
     .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible{ opacity:1; transform: translateY(0); }
 
@@ -611,8 +642,8 @@
       .step{ border-right:none; border-bottom: 1px solid rgba(247,243,236,0.12); }
       .step:last-child{ border-bottom:none; }
 
-      .grid{ grid-template-columns: 1fr; } /* mobil dikey */
-      .card{ aspect-ratio: auto; }       /* mobilde kare zorlamayalım */
+      .grid{ grid-template-columns: 1fr; } /* mobile vertical */
+      .card{ aspect-ratio: auto; }
       .sustain-grid{ grid-template-columns: 1fr; }
       .principles{ grid-template-columns: 1fr; }
       .contact-grid{ grid-template-columns: 1fr; }
@@ -625,7 +656,7 @@
   <!-- NAV -->
   <nav>
     <a class="brand" href="#top" aria-label="MOSEF">
-      <!-- Minimal monogram M (SVG) -->
+      <!-- Minimal monogram in nav -->
       <svg width="42" height="42" viewBox="0 0 64 64" role="img" aria-label="MOSEF Monogram">
         <rect x="1.5" y="1.5" width="61" height="61" rx="12" fill="rgba(184,151,90,0.08)" stroke="rgba(184,151,90,0.45)" stroke-width="3"/>
         <path d="M18 46V18h6l8 16 8-16h6v28h-6V30l-8 16-8-16v16h-6z"
@@ -651,17 +682,24 @@
     </div>
   </nav>
 
-  <!-- HERO (C) -->
+  <!-- HERO -->
   <header class="hero" id="top">
     <div class="since">Since 1953</div>
 
     <div class="hero-inner">
       <div>
+        <!-- NEW: Hero Monogram (subtle) -->
+        <div class="hero-monogram" aria-label="MOSEF Monogram">
+          <div class="m-box"><span>M</span></div>
+        </div>
+
         <div class="kicker">Organic Sustainable Ecological Farms</div>
+
         <h1 class="h1">
           Built on <em>discipline</em>.<br/>
           Structured for endurance.
         </h1>
+
         <p class="lead">
           MOSEF Holdings is a UK agricultural holding group operating through specialist companies across poultry, sheep genetics, high-value crops, and rural property.
           Operational focus, controlled standards, and long-term asset stewardship.
@@ -725,7 +763,7 @@
     </div>
   </section>
 
-  <!-- OPERATING MODEL (B) -->
+  <!-- MODEL -->
   <section class="model reveal" id="model">
     <div class="wrap">
       <div class="label">Operating Model</div>
@@ -822,7 +860,7 @@
     </div>
   </section>
 
-  <!-- SUSTAINABILITY (A: softer, controlled) -->
+  <!-- SUSTAINABILITY -->
   <section class="sustain reveal" id="sustainability">
     <div class="wrap">
       <div class="label">Sustainability</div>
@@ -920,5 +958,3 @@
 
 </body>
 </html>
-
-commit
